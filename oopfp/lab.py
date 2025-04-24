@@ -10,7 +10,7 @@ def account(balance):
     return balance - amount
 
   def dispatch(action, param=""):
-    if(action == 'deposit'):
+    if (action == 'deposit'):
       return account(deposit(param))
     elif (action == 'withdraw'):
       return account(withdraw(param))
@@ -27,17 +27,16 @@ def savings_account(balance):
   basic_account = account(balance)
 
   def dispatch(action, param=""):
-    if(action == 'interest'):
+    if (action == 'interest'):
       return balance * 0.2
     elif (action == 'deposit'):
       return savings_account(balance + 2 * param)
+    elif (action == 'balance'):
+      return balance
     else:
-      new_savings_account = \
-        savings_account(basic_account(action, param)('balance'))
-      return new_savings_account
+      return savings_account(basic_account(action, param)('balance'))
 
   return dispatch
 
 print(savings_account(60)('deposit', 60)('interest'))
-
 # print(account(160)('balance',10)) # --> 60
